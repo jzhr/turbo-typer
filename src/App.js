@@ -6,7 +6,7 @@ import useKeyPress from './hooks/useKeyPress';
 import { useState } from 'react';
 import { currentTime } from './utils/time';
 
-const initialWords = generate();
+let initialWords = generate();
 // console.log(initialWords);
 
 function App() {
@@ -19,8 +19,10 @@ function App() {
   const [startTime, setStartTime] = useState();
   const [wordCount, setWordCount] = useState(0);
   const [wpm, setWpm] = useState(0);
+  const [cpm, setCpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
   const [typedChars, setTypedChars] = useState('');
+  const [typoChars, setTypoChars] = useState('');
   
   useKeyPress(key => {
     if (!startTime) {
@@ -29,12 +31,13 @@ function App() {
 
     let updatedOutgoingChars = outgoingChars;
     let updatedIncomingChars = incomingChars;
-    
+
     if (key === currentChar) {
       if (incomingChars.charAt(0) === ' ') {
         setWordCount(wordCount + 1);
         const durationInMinutes = (currentTime() - startTime) / 60000.0;
         setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
+        setCpm(((typedChars.length) / durationInMinutes).toFixed(2));
       }
 
       if (leftPadding.length > 0) {
@@ -52,6 +55,10 @@ function App() {
         updatedIncomingChars +=' ' + generate();
       }
       setIncomingChars(updatedIncomingChars);
+    } else {
+      if (currentChar !== ' ') {
+        setTypoChars(typoChars + key);
+      }
     }
 
     const updatedTypedChars = typedChars + key;
@@ -63,10 +70,23 @@ function App() {
     );
   });
 
+  function handleReset() {
+    initialWords = generate();
+    setStartTime();
+    setTypedChars('');
+    setWordCount(0);
+    setWpm(0);
+    setCpm(0);
+    setAccuracy(0);
+    setOutgoingChars('');
+    setIncomingChars(initialWords.substr(1));
+    setCurrentChar(initialWords.charAt(0));
+    setTypoChars('');
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p className="Character">
           <span className="Character-out">
             {(leftPadding + outgoingChars).slice(-20)}
@@ -75,16 +95,12 @@ function App() {
           <span>{incomingChars.substr(0, 20)}</span>
         </p>
         <h3>
-          WPM: {wpm} | ACC: {accuracy}%
+          WPM: {wpm} | CPM: {cpm} | ACC: {accuracy}% 
         </h3>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h3 className="Typo">{typoChars}</h3>
+        <button onClick={handleReset}>
+          Reset
+        </button>
       </header>
     </div>
   );
