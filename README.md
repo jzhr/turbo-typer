@@ -1,3 +1,6 @@
+# Turbo Typer
+Test and train your typing speed. Displays CPM, WPM, and accuracy statistics.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
