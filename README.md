@@ -1,5 +1,6 @@
 # Turbo Typer
 Test and train your typing speed. Displays CPM, WPM, and accuracy statistics.
+You can try it out here: https://jzhr.github.io/turbo-typer/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
