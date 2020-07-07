@@ -6,8 +6,7 @@ import useKeyPress from './hooks/useKeyPress';
 import { useState } from 'react';
 import { currentTime } from './utils/time';
 
-let initialWords = generate();
-// console.log(initialWords);
+let initialWords = generate().toLowerCase();
 
 function App() {
   const [leftPadding, setLeftPadding] = useState(
@@ -23,6 +22,14 @@ function App() {
   const [accuracy, setAccuracy] = useState(0);
   const [typedChars, setTypedChars] = useState('');
   const [typoChars, setTypoChars] = useState('');
+  const [started, setStarted] = useState(false);
+  const [counter, setCounter] = React.useState(60);
+
+  React.useEffect(() => {
+    const timer =
+      started !== false && setInterval(() => setCounter(counter - 1), 1000);
+      return () => clearInterval(timer);
+  }, [counter, started]);
   
   useKeyPress(key => {
     if (!startTime) {
@@ -52,7 +59,7 @@ function App() {
       
       updatedIncomingChars = incomingChars.substring(1);
       if (updatedIncomingChars.split(' ').length < 10) {
-        updatedIncomingChars +=' ' + generate();
+        updatedIncomingChars +=' ' + generate().toLowerCase();
       }
       setIncomingChars(updatedIncomingChars);
     } else {
@@ -71,7 +78,7 @@ function App() {
   });
 
   function handleReset() {
-    initialWords = generate();
+    initialWords = generate().toLowerCase();
     setStartTime();
     setTypedChars('');
     setWordCount(0);
@@ -84,9 +91,14 @@ function App() {
     setTypoChars('');
   }
 
+  function handleStart() {
+    setStarted(true);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
+        {counter}s
         <p className="Character">
           <span className="Character-out">
             {(leftPadding + outgoingChars).slice(-20)}
@@ -98,6 +110,9 @@ function App() {
           WPM: {wpm} | CPM: {cpm} | ACC: {accuracy}% 
         </h3>
         <h3 className="Typo">{typoChars}</h3>
+        <button onClick={handleStart}>
+          Start
+        </button>
         <button onClick={handleReset}>
           Reset
         </button>
