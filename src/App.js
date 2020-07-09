@@ -5,9 +5,23 @@ import useKeyPress from './hooks/useKeyPress';
 import { useState } from 'react';
 import { currentTime } from './utils/time';
 import Modal from './components/Modal';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
+    },
+    secondary: {
+      main: '#11cb5f',
+    },
+  },
+});
 
 let initialWords = generate().toLowerCase();
-let timerTime = 60;
+let timerTime = 5;
 
 function App() {
   const [leftPadding, setLeftPadding] = useState(
@@ -149,10 +163,15 @@ function App() {
         <h3>
           WPM: {wpm} | CPM: {cpm} | ACC: {accuracy}% 
         </h3>
+
         <h3 className="Typo">{typoChars}</h3>
-        <button onClick={handleReset}>
-          Reset
-        </button>
+
+        <ThemeProvider theme={theme}>
+          <Button variant="outlined" color="primary" onClick={handleReset}>
+            Reset
+          </Button>
+        </ThemeProvider>
+        
       </header>
     </div>
   );
