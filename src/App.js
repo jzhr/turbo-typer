@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 });
 
 let initialWords = generate().toLowerCase();
-let timerTime = 5;
+let timerTime = 60;
 
 function App() {
   const [leftPadding, setLeftPadding] = useState(
@@ -131,6 +131,8 @@ function App() {
 
   // Effect hook for timer
   React.useEffect(() => {
+    document.title = 'Turbo Typer';
+
     const timer = started !== false && setInterval(() => setCounter(counter - 1), 1000);
     
     if (counter === 0) {
