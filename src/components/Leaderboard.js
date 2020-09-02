@@ -12,7 +12,7 @@ class Leaderboard extends React.Component {
   }
 
   getScores = () => {
-    axios.get('/api/scores')
+    axios.get('/api/scores/leaderboard')
       .then(res => {
         if (res.data) {
           this.setState({

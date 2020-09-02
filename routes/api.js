@@ -13,7 +13,7 @@ router.get('/scores', (req, res, next) => {
 });
 
 router.get('/scores/leaderboard', (req, res, next) => {
-  Score.find( {score: {$exists: true}} ).sort({scores : 1}).limit(5)
+  Score.find( {score: {$exists: true}} ).sort({score : -1}).limit(5)
     .then(data => res.json(data))
     .catch(next);
 });

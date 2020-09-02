@@ -8,6 +8,7 @@ import Modal from './components/Modal';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +22,7 @@ const theme = createMuiTheme({
 });
 
 let initialWords = generate().toLowerCase();
-let timerTime = 60;
+let timerTime = 10;
 
 function App() {
   const [leftPadding, setLeftPadding] = useState(
@@ -48,9 +49,10 @@ function App() {
   const [started, setStarted] = useState(false);
   const [counter, setCounter] = useState(timerTime);
 
-  // States for pop-up stats
+  // States for modal
   const [showModal, setShowModal] = useState(false);
   const [keyDisabled, setKeyDisabled] = useState(false);
+  const [resetDisabled, setResetDisabled] = useState(false);
   
   // Keypress hook
   useKeyPress(key => {
@@ -127,6 +129,7 @@ function App() {
     setShowModal(false);
     handleReset();
     setKeyDisabled(false);
+    setResetDisabled(false);
   }
 
   // Effect hook for timer
@@ -141,6 +144,7 @@ function App() {
       // Disable timer and keyboard input
       setStarted(false);
       setKeyDisabled(true);
+      setResetDisabled(true);
     }
     
     return () => clearInterval(timer);
@@ -159,7 +163,7 @@ function App() {
         </p>
 
         {
-          showModal ?  <Modal  wpm={wpm} cpm={cpm} acc={accuracy} closePopup={handleModalClose}/>  : null  
+          showModal ?  <Modal wpm={wpm} cpm={cpm} acc={accuracy} closePopup={handleModalClose}/>  : null  
         }  
 
         <h3>
@@ -169,7 +173,7 @@ function App() {
         <h3 className="Typo">{typoChars}</h3>
 
         <ThemeProvider theme={theme}>
-          <Button variant="outlined" color="primary" onClick={handleReset}>
+          <Button disabled={resetDisabled} variant="outlined" color="primary" onClick={handleReset}>
             Reset
           </Button>
         </ThemeProvider>
