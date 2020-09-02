@@ -7,6 +7,12 @@ import * as serviceWorker from './serviceWorker';
 import './App.css';
 import './components/component.css';
 
+window.addEventListener('keydown', function(e) {
+  if(e.keyCode === 32 && e.target === document.body) {
+    e.preventDefault();
+  }
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <App></App>
