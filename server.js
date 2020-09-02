@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const routes = require('./routes/api');
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 // Create server and port
 const app = express();
