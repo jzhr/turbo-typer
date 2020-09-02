@@ -6,5 +6,5 @@ Test and train your typing speed. Displays CPM, WPM, and accuracy statistics.
 You can try it out here: https://turbo-typer.herokuapp.com/
 
 ### Todo
-- Setup Express and MongoDB for Leaderboard
-- Deploy on Heroku
+- Add additional fields to Leaderboard
+- Improve cpm, wpm, and acc calculations

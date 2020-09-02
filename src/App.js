@@ -22,7 +22,7 @@ function App() {
   });
   
   let initialWords = generate().toLowerCase();
-  let timerTime = 10;
+  let timerTime = 60;
   
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join(''),
