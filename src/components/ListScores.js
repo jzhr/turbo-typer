@@ -8,11 +8,12 @@ const ListScores = ({ scores, deleteScore }) => {
         scores && scores.length > 0 ? (
           scores.map(score => {
             return (
-              <li key={score._id} onClick={() => deleteScore(score._id)}>{score.score} cpm</li>
+              <li key={score._id}>{score.score} cpm</li>
+              //onClick={() => deleteScore(score._id)}
             )
           })
         ) : (
-          <li>No scores</li>
+          <li>No scores available</li>
         )
       }
     </ul>
