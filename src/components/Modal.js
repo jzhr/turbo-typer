@@ -1,5 +1,4 @@
 import React from 'react';  
-import './style.css';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { createMuiTheme } from '@material-ui/core/styles';

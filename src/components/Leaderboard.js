@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import ListScores from './ListScores';
+import Button from '@material-ui/core/Button';
+import refresh from '../assets/refresh.png'
 
 class Leaderboard extends React.Component {
   state = {
@@ -38,6 +40,7 @@ class Leaderboard extends React.Component {
     return (
       <div className="leaderboard">
         <h1>Leaderboard</h1>
+        <Button onClick={this.getScores}><img src={refresh} alt="refresh"/></Button>
         <ListScores scores={scores} deleteScore={this.deleteScore}></ListScores>
       </div>
     );

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {generate} from './utils/words';
 import useKeyPress from './hooks/useKeyPress';
 import { useState } from 'react';
@@ -8,23 +7,23 @@ import Modal from './components/Modal';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import axios from 'axios';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#ffffff',
-    },
-    secondary: {
-      main: '#11cb5f',
-    },
-  },
-});
-
-let initialWords = generate().toLowerCase();
-let timerTime = 10;
+import downArrow from './assets/arrow.png';
 
 function App() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#FFF',
+      },
+      secondary: {
+        main: '#11cb5f',
+      },
+    },
+  });
+  
+  let initialWords = generate().toLowerCase();
+  let timerTime = 10;
+  
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join(''),
   );
@@ -173,12 +172,13 @@ function App() {
         <h3 className="Typo">{typoChars}</h3>
 
         <ThemeProvider theme={theme}>
-          <Button disabled={resetDisabled} variant="outlined" color="primary" onClick={handleReset}>
+          <Button disabled={resetDisabled} variant="outlined" color="secondary" onClick={handleReset}>
             Reset
           </Button>
         </ThemeProvider>
-        
+        <img className="arrow" src={downArrow} alt="down arrow" width="30px"/>
       </header>
+      
     </div>
   );
 }
