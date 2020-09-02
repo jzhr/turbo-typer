@@ -21,6 +21,12 @@
   background: white;  
 }
   
-.standout {
+.leaderboard {
   background: #FFF;
+  text-align: center;
+}
+
+.leaderboard ul {
+  padding: 0;
+  list-style-type: none;
 }

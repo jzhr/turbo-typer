@@ -16,7 +16,7 @@ const ListScores = ({ scores, deleteScore }) => {
             )
             :
             (
-              <li>No scores left</li>
+              <li>No scores</li>
             )
       }
     </ul>

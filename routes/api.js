@@ -9,14 +9,20 @@ router.get('/', (req,res) => {
 router.get('/scores', (req, res, next) => {
   Score.find({}, 'score')
     .then(data => res.json(data))
-    .catch(next)
+    .catch(next);
+});
+
+router.get('/scores/leaderboard', (req, res, next) => {
+  Score.find( {score: {$exists: true}} ).sort({scores : 1}).limit(5)
+    .then(data => res.json(data))
+    .catch(next);
 });
 
 router.post('/scores', (req, res, next) => {
   if (req.body.score) {
     Score.create(req.body)
       .then(data => res.json(data))
-      .catch(next)
+      .catch(next);
   } else {
     res.json({
       error: "The input field is empty"

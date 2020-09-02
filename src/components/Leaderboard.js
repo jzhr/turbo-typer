@@ -36,7 +36,7 @@ class Leaderboard extends React.Component {
   render() {
     let { scores } = this.state;
     return (
-      <div className="standout">
+      <div className="leaderboard">
         <h1>Leaderboard</h1>
         <ListScores scores={scores} deleteScore={this.deleteScore}></ListScores>
       </div>
