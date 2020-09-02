@@ -7,7 +7,7 @@ import Modal from './components/Modal';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import downArrow from './assets/arrow.png';
+import downArrow from './assets/arrow.svg';
 
 function App() {
   const theme = createMuiTheme({
