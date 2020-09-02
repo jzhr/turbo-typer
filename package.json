@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
+    "heroku-postbuild": "npm install && npm run build",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
