@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const path = require('path');
@@ -17,6 +18,7 @@ app.listen(port, () => {
 });
 
 // Connect to database
+dotenv.config();
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { 
   useNewUrlParser: true, 
