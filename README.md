@@ -9,5 +9,6 @@ You can try out Turbo Typer here: https://turbo-typer.herokuapp.com/
 
 
 ### Todo
-- Add additional fields to Leaderboard
-- Improve cpm, wpm, and acc calculations
+- Improve wpm calculation
+- Add additional insights into post-game modal
+- Multiplayer mode
