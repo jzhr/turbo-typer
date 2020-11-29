@@ -1,21 +1,29 @@
-.App {
-  text-align: center;
-  font-family: monospace;
+html {
+  background-color: #282c34;
+  color: #FFF;
 }
 
-.App-logo {
+.app {
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.app-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .app-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+.app-header {
+  font-size: 30px;
+}
+
+.game {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,10 +31,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   padding: 10px;
-  color: white;
 }
 
-.App-link {
+.app-link {
   color: #61dafb;
 }
 
@@ -39,22 +46,38 @@
   }
 }
 
-.Character {
+.character {
   white-space: pre;
 }
 
-.Character-current {
-  background-color: #09d3ac;
+.character-current {
+  background-color: rgb(9, 211, 172, 1);
+  animation: blinker 1s step-start infinite;
 }
 
-.Character-out {
+@keyframes blinker {
+  50% {
+    background-color: rgb(9, 211, 172, 0);
+  }
+}
+
+.character-out {
   color: silver;
 }
 
-.Typo {
+.typo {
   color: red;
 }
 
 .arrow {
   margin-top: 200px;
+}
+
+h3 {
+  display: inline;
+  font-size: 18px;
+}
+
+.leaderboard {
+  color: #000;
 }

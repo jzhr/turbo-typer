@@ -1,9 +1,9 @@
 import React from 'react';  
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import axios from 'axios';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { blue, green } from '@material-ui/core/colors';
 
 class Popup extends React.Component {
 
@@ -13,17 +13,6 @@ class Popup extends React.Component {
     cpm: JSON.parse(JSON.stringify(this.props.cpm)),
     acc: JSON.parse(JSON.stringify(this.props.acc))
   }
-
-  theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#FFFFFF',
-      },
-      secondary: {
-        main: '#11cb5f',
-      },
-    },
-  });
 
   // Function to add new scores to db
   addScore = () => {
@@ -44,17 +33,25 @@ class Popup extends React.Component {
     this.props.closePopup();
   }
 
+  theme = createMuiTheme({
+    palette: {
+      primary: blue,
+      secondary: green,
+    },
+  });
+
   render() {  
     return (  
+      <ThemeProvider theme={this.theme}>
         <div className='popup'>  
           <div className='popup\_inner'>  
             <h1>{this.state.wpm} WPM, {this.state.cpm} CPM, {this.state.acc}% ACC</h1> 
-            <ThemeProvider theme={this.theme}>
               <Box display='inline' m={3}><Button variant="contained" color="primary" onClick={this.props.closePopup}>Try Again</Button></Box>
               <Box display='inline' m={3}><Button variant="contained" color="primary" onClick={() => this.addScore()}>Add to Leaderboard</Button></Box>  
-            </ThemeProvider>
           </div>  
-        </div>  );  
+        </div>  
+        </ThemeProvider>
+    );  
   }  
 }  
 
