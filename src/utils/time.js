@@ -1,1 +1,3 @@
-export const currentTime = () => new Date().getTime();
+const currentTime = () => new Date().getTime();
+
+export default currentTime;

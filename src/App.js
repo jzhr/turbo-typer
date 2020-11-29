@@ -1,28 +1,24 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {generate} from './utils/words';
 import useKeyPress from './hooks/useKeyPress';
-import { useState } from 'react';
-import { currentTime } from './utils/time';
+import currentTime from './utils/time';
 import Modal from './components/Modal';
-import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import downArrow from './assets/arrow.svg';
+import { blue, green } from '@material-ui/core/colors';
 
-function App() {
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#FFF',
-      },
-      secondary: {
-        main: '#11cb5f',
-      },
-    },
-  });
-  
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: green,
+  },
+});
+
+export default function App() {
   let initialWords = generate().toLowerCase();
-  let timerTime = 60;
+  const timerTime = 60;
   
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join(''),
@@ -51,6 +47,7 @@ function App() {
   // States for modal
   const [showModal, setShowModal] = useState(false);
   const [keyDisabled, setKeyDisabled] = useState(false);
+
   const [resetDisabled, setResetDisabled] = useState(false);
   
   // Keypress hook
@@ -132,7 +129,7 @@ function App() {
   }
 
   // Effect hook for timer
-  React.useEffect(() => {
+  useEffect(() => {
     document.title = 'Turbo Typer';
 
     const timer = started !== false && setInterval(() => setCounter(counter - 1), 1000);
@@ -140,7 +137,7 @@ function App() {
     if (counter === 0) {
       setShowModal(true);
 
-      // Disable timer and keyboard input
+      // Disable timer, keyboard input, and reset button
       setStarted(false);
       setKeyDisabled(true);
       setResetDisabled(true);
@@ -150,37 +147,42 @@ function App() {
   }, [counter, started]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {counter}s
-        <p className="Character">
-          <span className="Character-out">
-            {(leftPadding + outgoingChars).slice(-20)}
-          </span>
-          <span className="Character-current">{currentChar}</span>
-          <span>{incomingChars.substr(0, 20)}</span>
-        </p>
+    <ThemeProvider>
+      <div className="app">
+        <div className="app-header">
+          turbo typer
+        </div>
+        <div className="stats">
+          <h3>wpm: {wpm} |</h3>
+          <h3> cpm: {cpm} |</h3>
+          <h3> acc: {accuracy}%</h3>
+        </div>
+        
+        <header className="game">
+          {counter}s
+          <p className="character">
+            <span className="character-out">
+              {(leftPadding + outgoingChars).slice(-20)}
+            </span>
+            <span className="character-current">
+              {currentChar}
+            </span>
+            <span>{incomingChars.substr(0, 20)}</span>
+          </p>
 
-        {
-          showModal ?  <Modal wpm={wpm} cpm={cpm} acc={accuracy} closePopup={handleModalClose}/>  : null  
-        }  
+          { showModal ?  <Modal wpm={wpm} cpm={cpm} acc={accuracy} closePopup={handleModalClose}/>  : null }  
 
-        <h3>
-          WPM: {wpm} | CPM: {cpm} | ACC: {accuracy}% 
-        </h3>
+          <h3 className="typo">{typoChars}</h3>
 
-        <h3 className="Typo">{typoChars}</h3>
+          <ThemeProvider theme={theme}>
+            <Button disabled={resetDisabled} variant="outlined" color="secondary" onClick={handleReset}>
+              Reset
+            </Button>
+          </ThemeProvider>
 
-        <ThemeProvider theme={theme}>
-          <Button disabled={resetDisabled} variant="outlined" color="secondary" onClick={handleReset}>
-            Reset
-          </Button>
-        </ThemeProvider>
-        <img className="arrow" src={downArrow} alt="down arrow" width="30px"/>
-      </header>
-      
-    </div>
+          <img className="arrow" src={downArrow} alt="down arrow" width="30px"/>
+        </header>
+      </div>
+    </ThemeProvider>
   );
 }
-
-export default App;
