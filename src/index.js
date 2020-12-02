@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import Leaderboard from './components/Leaderboard';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 import './App.css';
 import './components/component.css';
 
@@ -16,7 +15,6 @@ window.addEventListener('keydown', function(e) {
 ReactDOM.render(
   <React.StrictMode>
     <App></App>
-    <Leaderboard />
   </React.StrictMode>,
   document.getElementById('root')
 );

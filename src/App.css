@@ -1,8 +1,3 @@
-html {
-  background-color: #282c34;
-  color: #FFF;
-}
-
 .app {
   text-align: center;
   font-family: 'Oxygen Mono', monospace;
@@ -76,8 +71,4 @@ html {
 h3 {
   display: inline;
   font-size: 18px;
-}
-
-.leaderboard {
-  color: #000;
 }
