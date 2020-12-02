@@ -68,8 +68,8 @@ export default function App() {
         if (incomingChars.charAt(0) === ' ') {
           setWordCount(wordCount + 1);
           const durationInMinutes = (currentTime() - startTime) / 60000.0;
-          setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
-          setCpm(((typedChars.length) / durationInMinutes).toFixed(2));
+          setCpm(((typedChars.length - typoChars.length) / durationInMinutes).toFixed(2));
+          setWpm(((cpm / 5).toFixed(2)));
         }
   
         if (leftPadding.length > 0) {

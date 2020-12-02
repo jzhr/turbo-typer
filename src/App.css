@@ -3,18 +3,8 @@
   font-family: 'Oxygen Mono', monospace;
 }
 
-.app-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .app-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .app-header {
+  margin-top: 10px;
   font-size: 30px;
 }
 
