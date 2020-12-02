@@ -8,6 +8,8 @@ import currentTime from './utils/time';
 import Modal from './components/Modal';
 import downArrow from './assets/arrow.svg';
 import { blue, green } from '@material-ui/core/colors';
+import Leaderboard from '../src/components/Leaderboard';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -182,7 +184,9 @@ export default function App() {
 
           <img className="arrow" src={downArrow} alt="down arrow" width="30px"/>
         </header>
+        <Leaderboard/>
       </div>
+      
     </ThemeProvider>
   );
 }

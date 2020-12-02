@@ -11,11 +11,16 @@
 }  
   
 .leaderboard {
-  background: #FFF;
+  background: #31353f;
   text-align: center;
+  padding: 10px;
 }
 
 .leaderboard ul {
   padding: 0;
   list-style-type: none;
+}
+
+.leaderboard #refresh {
+  filter: invert(100%);
 }

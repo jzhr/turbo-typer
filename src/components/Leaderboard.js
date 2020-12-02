@@ -40,7 +40,7 @@ class Leaderboard extends React.Component {
     return (
       <div className="leaderboard">
         <h1>Leaderboard</h1>
-        <Button onClick={this.getScores}><img src={refresh} alt="refresh"/></Button>
+        <Button onClick={this.getScores}><img id={"refresh"} src={refresh} alt="refresh"/></Button>
         <ListScores scores={scores} deleteScore={this.deleteScore}></ListScores>
       </div>
     );
