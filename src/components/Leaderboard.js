@@ -5,10 +5,13 @@ import Button from '@material-ui/core/Button';
 import refresh from '../assets/refresh.png'
 
 class Leaderboard extends React.Component {
-  state = {
-    scores: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      scores: []
+    }
   }
-
+  
   componentDidMount(){
     this.getScores();
   }

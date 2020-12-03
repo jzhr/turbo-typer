@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {generate} from './utils/words';
@@ -49,9 +49,11 @@ export default function App() {
   // States for modal
   const [showModal, setShowModal] = useState(false);
   const [keyDisabled, setKeyDisabled] = useState(false);
-
   const [resetDisabled, setResetDisabled] = useState(false);
-  
+
+  // Ref for leaderboard
+  const lbRef = useRef(null);
+
   // Keypress hook
   useKeyPress(key => {
     if (keyDisabled === false) {
@@ -148,6 +150,12 @@ export default function App() {
     return () => clearInterval(timer);
   }, [counter, started]);
 
+  const scrolltoLB = () => {
+    if (lbRef.current) {
+      lbRef.current.scrollIntoView({ behavior: 'smooth'});
+    }
+  }
+
   return (
     <ThemeProvider>
       <div className="app">
@@ -182,9 +190,10 @@ export default function App() {
             </Button>
           </ThemeProvider>
 
-          <img className="arrow" src={downArrow} alt="down arrow" width="30px"/>
+          <img className="arrow" src={downArrow} alt="down arrow" width="30px" onClick={scrolltoLB}/>
         </header>
         <Leaderboard/>
+        <div ref={lbRef}></div>
       </div>
       
     </ThemeProvider>
