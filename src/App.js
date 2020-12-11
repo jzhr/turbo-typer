@@ -20,6 +20,7 @@ const theme = createMuiTheme({
 
 export default function App() {
   let initialWords = generate().toLowerCase();
+  
   const timerTime = 60;
   
   const [leftPadding, setLeftPadding] = useState(
@@ -157,7 +158,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <div className="app">
         <div className="app-header">
           turbo typer
