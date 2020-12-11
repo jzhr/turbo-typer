@@ -9,9 +9,6 @@ You can try out Turbo Typer here: https://turbo-typer.herokuapp.com/
 
 
 ### Todo
-- Improve wpm calculation
-- Improve typing cursor
 - Custom time limits
-- Make disappearing text look cooler
 - Add additional insights into post-game modal
 - Multiplayer mode
